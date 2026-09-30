@@ -13,7 +13,7 @@ export function WhyChooseUs() {
       <div className="wrap relative">
         <Reveal className="mx-auto max-w-[640px] text-center">
           <SectionTag center>Why Choose Us</SectionTag>
-          <h2 className="text-4xl leading-[1.2] lg:text-5xl">Why Choose {site.name}?</h2>
+          <h2 className="text-[32px] leading-[1.2] sm:text-4xl lg:text-5xl">Why Choose {site.name}?</h2>
           <p className="mt-5">
             From everyday check-ups to specialist care, we make looking after your family&apos;s health simple, personal and
             reliable.
@@ -25,10 +25,10 @@ export function WhyChooseUs() {
             const Icon = icons[r.icon];
             return (
               <Reveal key={r.title} delay={i * 120} className={i === 1 ? "md:mt-12" : ""}>
-                <article className="h-full rounded-2xl bg-cream p-8 transition-transform duration-500 hover:-translate-y-2">
+                <article className="h-full rounded-2xl bg-cream p-6 transition sm:p-8-transform duration-500 hover:-translate-y-2">
                   <Icon className="size-14 text-lime" />
-                  <h3 className="mt-8 text-3xl leading-tight">{r.title}</h3>
-                  <p className="mt-4 text-lg leading-snug">{r.text}</p>
+                  <h3 className="mt-6 text-2xl leading-tight sm:mt-8 sm:text-3xl">{r.title}</h3>
+                  <p className="mt-4 text-base leading-snug sm:text-lg">{r.text}</p>
                 </article>
               </Reveal>
             );

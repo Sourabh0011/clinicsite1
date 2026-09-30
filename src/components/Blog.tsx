@@ -13,7 +13,7 @@ export function Blog() {
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <SectionTag>Blog</SectionTag>
-            <h2 className="text-4xl leading-[1.2] lg:text-5xl">Health Tips &amp; Insights</h2>
+            <h2 className="text-[32px] leading-[1.2] sm:text-4xl lg:text-5xl">Health Tips &amp; Insights</h2>
           </div>
           <Button href="#blog">View More Blog</Button>
         </Reveal>
@@ -35,7 +35,7 @@ export function Blog() {
                   <Calendar className="size-4" />
                   {p.date}
                 </p>
-                <h3 className="mt-3 max-w-[340px] text-3xl leading-tight transition-colors group-hover:text-lime-dark">
+                <h3 className="mt-3 max-w-[340px] text-2xl leading-tight sm:text-3xl transition-colors group-hover:text-lime-dark">
                   {p.title}
                 </h3>
                 <div className="mt-5 flex items-center justify-between text-sm">

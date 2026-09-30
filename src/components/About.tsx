@@ -10,7 +10,7 @@ export function About() {
       <div className="wrap">
         <Reveal>
           <SectionTag>About Us</SectionTag>
-          <h2 className="max-w-[600px] text-4xl leading-[1.2] lg:text-5xl">{about.title}</h2>
+          <h2 className="max-w-[600px] text-[32px] leading-[1.2] sm:text-4xl lg:text-5xl">{about.title}</h2>
         </Reveal>
 
         <Reveal delay={150} className="mt-8 lg:ml-[39%] lg:mt-6">
@@ -29,7 +29,7 @@ export function About() {
                 i === 2 ? "lg:border-l lg:pl-[18%]" : ""
               }`}
             >
-              <p className="font-display text-5xl font-medium text-teal lg:text-[56px]">
+              <p className="font-display text-4xl font-medium text-teal sm:text-5xl lg:text-[56px]">
                 <RollingCounter value={s.value} suffix={s.suffix} />
               </p>
               <p className="mt-3">{s.label}</p>

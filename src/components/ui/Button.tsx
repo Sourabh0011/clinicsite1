@@ -25,7 +25,10 @@ export function Button({
   size?: "sm" | "md";
   className?: string;
 }) {
-  const sizing = size === "sm" ? "py-2.5 pl-4 pr-2.5 text-sm gap-2.5" : "py-4 pl-5 pr-4 text-base gap-3";
+  const sizing =
+    size === "sm"
+      ? "py-2.5 pl-4 pr-2.5 text-sm gap-2.5"
+      : "py-3 pl-4 pr-3 text-[15px] gap-2.5 sm:py-4 sm:pl-5 sm:pr-4 sm:text-base sm:gap-3";
 
   return (
     <Link

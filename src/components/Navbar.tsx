@@ -27,10 +27,24 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock page scroll and close on Escape while the mobile drawer is open
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
   return (
+    <>
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-white/70 py-3 shadow-[0_8px_30px_-12px_rgba(4,67,64,0.2)] backdrop-blur-xl" : "py-5"
+      className={`fixed inset-x-0 top-0 z-40 transition-all duration-500 ${
+        scrolled ? "bg-white/70 py-3 shadow-[0_8px_30px_-12px_rgba(4,67,64,0.2)] backdrop-blur-xl" : "py-4 sm:py-5"
       }`}
     >
       <div className="wrap flex items-center justify-between gap-4">
@@ -84,38 +98,51 @@ export function Navbar() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             type="button"
             aria-label="Cart"
-            className="relative hidden size-[52px] place-items-center rounded-full border border-white/70 bg-white/40 text-teal backdrop-blur-md sm:grid"
+            className="relative hidden size-[52px] place-items-center rounded-full border border-white/70 bg-white/40 text-teal backdrop-blur-md lg:grid"
           >
             <Cart className="size-5" />
             <span className="absolute right-3 top-3 size-2 rounded-full bg-red-500" />
           </button>
-          <Button href="#appointment" className="hidden sm:inline-flex">
-            Contact Us
-          </Button>
+          {/* Compact pill on tablets, full size on desktop; phones use the drawer's button */}
+          {/* Wrapped because Button always sets inline-flex, which would override `hidden` */}
+          <div className="hidden sm:block lg:hidden">
+            <Button href="#appointment" size="sm">
+              Contact Us
+            </Button>
+          </div>
+          <div className="hidden lg:block">
+            <Button href="#appointment">Contact Us</Button>
+          </div>
           <button
             type="button"
             aria-label="Open menu"
+            aria-expanded={open}
             onClick={() => setOpen(true)}
-            className="grid size-12 place-items-center rounded-full bg-teal text-white lg:hidden"
+            className="grid size-10 place-items-center rounded-full bg-teal text-white sm:size-11 lg:hidden"
           >
             <Menu className="size-5" />
           </button>
         </div>
       </div>
+    </header>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — rendered outside <header>: the header's backdrop-filter would
+          otherwise become the containing block for these fixed elements once scrolled. */}
       <div
-        className={`fixed inset-0 z-50 bg-teal/40 backdrop-blur-sm transition-opacity lg:hidden ${
+        aria-hidden
+        className={`fixed inset-0 z-50 bg-teal/40 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setOpen(false)}
       />
       <aside
-        className={`fixed inset-y-0 right-0 z-50 flex w-[min(360px,88vw)] flex-col bg-cream p-6 transition-transform duration-500 lg:hidden ${
+        aria-label="Mobile menu"
+        inert={!open}
+        className={`fixed inset-y-0 right-0 z-50 flex h-dvh w-[min(340px,86vw)] flex-col overflow-y-auto bg-cream p-5 shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:p-6 lg:hidden ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -125,28 +152,30 @@ export function Navbar() {
             type="button"
             aria-label="Close menu"
             onClick={() => setOpen(false)}
-            className="grid size-11 place-items-center rounded-full border border-line text-teal"
+            className="grid size-10 place-items-center rounded-full border border-line text-teal"
           >
             <Close className="size-5" />
           </button>
         </div>
-        <ul className="mt-10 space-y-1">
+        <ul className="mt-8">
           {[...navLinks, ...pageLinks].map((l) => (
             <li key={l.label}>
               <Link
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="block border-b border-line/60 py-3.5 font-display text-2xl text-teal"
+                className="block border-b border-line/60 py-3 font-display text-xl text-teal"
               >
                 {l.label}
               </Link>
             </li>
           ))}
         </ul>
-        <div className="mt-auto">
-          <Button href="#appointment">Book Appointment</Button>
+        <div className="mt-auto pt-8">
+          <Button href="#appointment" size="sm">
+            Book Appointment
+          </Button>
         </div>
       </aside>
-    </header>
+    </>
   );
 }

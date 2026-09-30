@@ -16,7 +16,7 @@ export function Cta() {
     <section className="pb-20 lg:pb-28">
       <div className="wrap">
         <Reveal>
-          <div className="relative overflow-hidden rounded-2xl px-6 py-20 text-center">
+          <div className="relative overflow-hidden rounded-2xl px-5 py-14 text-center sm:px-6 sm:py-20">
             <SoftGradient variant="wide" />
             {cta.images.map((src, i) => (
               <div
@@ -29,7 +29,7 @@ export function Cta() {
             ))}
             <div className="relative mx-auto max-w-[420px]">
               <SectionTag center>Appointment</SectionTag>
-              <h2 className="text-4xl leading-[1.2] lg:text-5xl">Start Your Health Journey Today</h2>
+              <h2 className="text-[32px] leading-[1.2] sm:text-4xl lg:text-5xl">Start Your Health Journey Today</h2>
               <p className="mt-5">Book online for trusted check-ups, prescriptions and convenient medical care.</p>
               <Button href="#appointment" className="mt-8">
                 Book Your Appointment

@@ -45,12 +45,12 @@ export function Hero() {
   const [left, center, right] = hero.cards;
 
   return (
-    <section id="top" className="relative overflow-hidden pb-24 pt-36 lg:pb-32 lg:pt-44">
+    <section id="top" className="relative overflow-hidden pb-16 pt-28 sm:pb-24 sm:pt-36 lg:pb-32 lg:pt-44">
       <SoftGradient bars />
 
       <div className="wrap relative text-center">
         <h1
-          className="mx-auto max-w-[900px] text-[44px] leading-[1.1] tracking-[-0.02em] sm:text-6xl lg:text-[77px]"
+          className="mx-auto max-w-[900px] text-[38px] leading-[1.1] tracking-[-0.02em] sm:text-6xl lg:text-[77px]"
           style={{ animation: "rise 1s cubic-bezier(0.22,1,0.36,1) both" }}
         >
           {hero.titleBefore}{" "}
@@ -60,13 +60,13 @@ export function Hero() {
           {hero.titleAfter}
         </h1>
         <p
-          className="mx-auto mt-6 max-w-[640px] text-lg leading-snug text-ink"
+          className="mx-auto mt-5 max-w-[640px] text-base leading-snug sm:mt-6 sm:text-lg text-ink"
           style={{ animation: "rise 1s 0.15s cubic-bezier(0.22,1,0.36,1) both" }}
         >
           {hero.text}
         </p>
         <div
-          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+          className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-10 sm:gap-4"
           style={{ animation: "rise 1s 0.3s cubic-bezier(0.22,1,0.36,1) both" }}
         >
           <Button href="#appointment">Book Appointment</Button>
@@ -76,7 +76,7 @@ export function Hero() {
         </div>
 
         {/* Stacked cards: sides slide out from behind the featured card */}
-        <div className="relative mx-auto mt-16 max-w-[720px] lg:mt-20">
+        <div className="relative mx-auto mt-12 max-w-[720px] sm:mt-16 lg:mt-20">
           <div className="grid grid-cols-1 gap-6 sm:hidden">
             <HeroCard card={center} featured />
           </div>

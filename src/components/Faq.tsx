@@ -14,7 +14,7 @@ export function Faq() {
       <div className="wrap">
         <Reveal className="mx-auto max-w-[640px] text-center">
           <SectionTag center>FAQ</SectionTag>
-          <h2 className="text-4xl leading-[1.2] lg:text-5xl">Frequently Asked Questions</h2>
+          <h2 className="text-[32px] leading-[1.2] sm:text-4xl lg:text-5xl">Frequently Asked Questions</h2>
           <p className="mt-5">
             Answers to the questions we hear most, so you can feel confident and informed before your appointment.
           </p>
@@ -25,16 +25,16 @@ export function Faq() {
             const isOpen = open === i;
             return (
               <Reveal key={f.q} delay={i * 60}>
-                <div className="rounded-2xl bg-cream px-6 lg:px-6">
+                <div className="rounded-2xl bg-cream px-4 sm:px-6">
                   <button
                     type="button"
                     aria-expanded={isOpen}
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-center justify-between gap-6 py-7 text-left"
+                    className="flex w-full items-center justify-between gap-6 py-5 text-left sm:py-7"
                   >
-                    <span className="font-display text-2xl font-medium text-teal lg:text-[32px]">{f.q}</span>
+                    <span className="font-display text-lg font-medium leading-snug text-teal sm:text-2xl lg:text-[32px]">{f.q}</span>
                     <span
-                      className={`grid size-12 shrink-0 place-items-center rounded-full border border-line bg-white text-teal transition-all duration-300 ${
+                      className={`grid size-10 shrink-0 sm:size-12 place-items-center rounded-full border border-line bg-white text-teal transition-all duration-300 ${
                         isOpen ? "rotate-180 border-lime bg-lime" : ""
                       }`}
                     >
@@ -47,7 +47,7 @@ export function Faq() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="border-t border-line/70 pb-7 pt-6 text-lg leading-snug">{f.a}</p>
+                      <p className="border-t border-line/70 pb-5 pt-4 text-base leading-snug sm:pb-7 sm:pt-6 sm:text-lg">{f.a}</p>
                     </div>
                   </div>
                 </div>

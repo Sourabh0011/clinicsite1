@@ -36,7 +36,16 @@ export function BookBanner() {
     };
   }, []);
 
-  const inset = (1 - progress) * 12; // % of width trimmed on each side
+  // % of width trimmed on each side; kept subtle on phones where space is tight
+  const [maxInset, setMaxInset] = useState(12);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const apply = () => setMaxInset(mq.matches ? 4 : 12);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+  const inset = (1 - progress) * maxInset;
 
   return (
     <section id="appointment" ref={ref} className="py-16 lg:py-24">
@@ -55,12 +64,12 @@ export function BookBanner() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-teal/10 via-teal/55 to-teal" />
 
-          <div className="relative flex min-h-[480px] flex-col items-center justify-center px-6 py-20 text-center lg:min-h-[560px]">
+          <div className="relative flex min-h-[440px] flex-col items-center justify-center px-5 py-14 sm:min-h-[480px] sm:px-6 sm:py-20 text-center lg:min-h-[560px]">
             <p className="flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-4 py-2 text-sm text-white backdrop-blur-md">
               <span className="size-2.5 rounded-full bg-lime" />
               Available at - {site.hours}
             </p>
-            <h2 className="mt-6 text-4xl leading-[1.2] !text-white lg:text-5xl">
+            <h2 className="mt-6 text-[32px] leading-[1.2] !text-white sm:text-4xl lg:text-5xl">
               Book Your
               <br />
               <span className="text-lime">Appointment</span> Today!
